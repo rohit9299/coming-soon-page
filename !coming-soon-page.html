@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coming Soon | Your Store</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: #111;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    h1 {
+      font-size: 3em;
+      margin-bottom: 0.3em;
+    }
+    p {
+      font-size: 1.2em;
+      margin-bottom: 2em;
+    }
+    .countdown {
+      font-size: 2em;
+      margin-bottom: 2em;
+    }
+    input[type="email"] {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      width: 250px;
+    }
+    button {
+      padding: 10px 20px;
+      margin-left: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #ff5e5e;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.9em;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <h1>Your Brand Name</h1>
+  <p>Something exciting is coming soon. Get notified first.</p>
+
+  <div class="countdown" id="countdown">00d : 00h : 00m : 00s</div>
+
+  <form action="#" method="POST">
+    <input type="email" placeholder="Enter your email" required>
+    <button type="submit">Notify Me</button>
+  </form>
+
+  <div class="footer">© 2025 Your Brand. All rights reserved.</div>
+
+  <script>
+    // Countdown timer script
+    const countdown = document.getElementById('countdown');
+    const launchDate = new Date("May 20, 2025 12:00:00").getTime();
+
+    const updateTimer = setInterval(() => {
+      const now = new Date().getTime();
+      const timeLeft = launchDate - now;
+
+      if (timeLeft < 0) {
+        clearInterval(updateTimer);
+        countdown.innerHTML = "We're Live!";
+      } else {
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        countdown.innerHTML = `${days}d : ${hours}h : ${minutes}m : ${seconds}s`;
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
